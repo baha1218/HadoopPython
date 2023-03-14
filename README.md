@@ -1,7 +1,7 @@
 
 # Déploiement de donnée sur Hadoop avec Python et Spark
 
-Nous allons importer et pousser un fichier csv sur notre cluster et génerer un graphique.
+Nous allons, dans un premier temp, importer et pousser un fichier csv sur notre cluster et génerer un graphique.
 
 
 
@@ -35,19 +35,19 @@ Nous allons maintenant installer pyspark sur nos 5 conteneurs.
 
 ### Datanode : 
 
-Obtenez les ids de votre conteneur
+Obtenez les ids de votre conteneur.
 
 ```bash
 docker ps
 ```
 
-Connectez vous au conteneur grace à l'id
+Connectez vous au conteneur grace à l'id.
 
 ```bash
 docker exec -ti <id> bash
 ```
 
-Installez pyspark
+Installez pyspark.
 ```bash
 apt-get install python3
 apt-get install python3-pip
@@ -57,19 +57,19 @@ pip3 install pyspark
 
 ### Namenode : 
 
-Obtenez les ids de votre conteneur
+Obtenez les ids de votre conteneur.
 
 ```bash
 docker ps
 ```
 
-Connectez vous au conteneur grace à l'id
+Connectez vous au conteneur grace à l'id.
 
 ```bash
 docker exec -ti <id> bash
 ```
 
-Installez pyspark
+Installez pyspark.
 ```bash
 apt-get install python3
 apt-get install python3-pip
@@ -78,12 +78,12 @@ pip3 install pyspark
 ```
 Une fois l'installation terminé sur notre cluster, toutes le reste de la configuration se fera sur votre namenode.
 
-Installez un editeur de texte
+Installez un editeur de texte.
 
 ```bash
 apt-get install nano
 ```
-Créer un fichier `text.txt` et écrivez quelques mots
+Créer un fichier `text.txt` et écrivez quelques mots.
 ```bash
 nano text.txt
 ```
@@ -93,7 +93,74 @@ hadoop fs -mkdir /user
 hadoop fs -mkdir /user/root
 hadoop fs -put text.txt
 ```
-Vérifiez sur le webui dans Utilities/Browse the file system
+Vérifiez sur le webui dans Utilities/Browse the file system.
 ![webuihadoop](.gitignore/hadoop.png)
 
+Créer un dossier `spark-logs` dans votre cluster.
+```bash
+hadoop fs -mkdir /spark-logs
+```
 
+Créer un fichier [text.py](https://github.com/baha1218/HadoopPython/blob/main/file/text.py)
+```bash
+nano text.py
+```
+
+Vous pouvez maintenant executer le script qui va compter le nombre de mot dans le fichier que vous avez push dans le cluster.
+```bash
+python3 text.py
+```
+
+Nous allons maintenant telecharger des données et les push dans notre cluster. Nous generont par la suite des statistiques avec `pyspark`.
+
+Les données telechargées sont sous format csv. Il s'agit des voeux Parcoursup de l'année 2020;
+
+Télechargez et renommez les données.
+
+```bash
+wget https://www.data.gouv.fr/fr/datasets/r/7400c7d1-8db6-43b2-9235-aae564223963 
+mv 7400c7d1-8db6-43b2-9235-aae564223963 fr-esr-parcoursup.csv
+```
+
+Poussez les données dans votre cluster
+```bash
+hadoop fs -put fr-esr-parcoursup.csv
+```
+Créer un fichier [result_spark.py](https://github.com/baha1218/HadoopPython/blob/main/file/result_spark.py) et executez le.
+```bash
+nano result_spark.py
+python3 result_spark.py
+```
+
+Affichez les données géneré dans le cluster
+```bash
+hadoop fs -cat /user/root/result-parcoursup.csv/part-00000-9d5a5330-f923-4806-a095-dd8740e8a120-c000.csv
+```
+Attention ! Votre fichier a surement un nom différent. Vous pouvez vérifier sur le webui ou avec un `fs -ls`
+
+Copiez l'output et créez un fichier [result.txt](https://github.com/baha1218/HadoopPython/blob/main/file/result.txt). N'oubliez pas de supprimer la premiere ligne !
+```bash
+IFSI,D.E secteur sanitaire,D.E Infirmier,1391246
+Ecole d'Ingénieur,Formations  des écoles d'ingénieurs,Formation d'ingénieur Bac + 5,626037
+PASS,Licence - Sciences - technologies - santé,Parcours d'Accès Spécifique Santé (PASS),512607
+Licence,Licence - Droit-économie-gestion,Droit,321999
+BTS,BTS - Services,Management Commercial Opérationnel,291727
+DUT,DUT - Service,Techniques de commercialisation,214800
+DUT,DUT - Service,Gestion des entreprises et des administrations,205799
+CPGE,Classe préparatoire scientifique,MPSI,198311
+BTS,BTS - Services,Négociation et digitalisation de la Relation Client,193432
+CPGE,Classe préparatoire scientifique,PCSI,183942
+```
+### Windows 
+
+Nous ne pouvons pas visualiser ces données sans interface graphique donc j'ai transféré mon fichier [result.txt](https://github.com/baha1218/HadoopPython/blob/main/file/result.txt) et [result_spark.py](https://github.com/baha1218/HadoopPython/blob/main/file/result_spark.py) sur mon windows avec python d'installer.
+
+Rendez vous avec le `cmd` dans l'emplacement où se trouve vos fichiers.
+Vous devez avoir installer Python sur windows. N'oubliez pas d'installer matplotlib.
+```bash
+pip install matplotlib
+```
+Pour finir, affichez votre graphique.
+```bash
+type result.txt | python3 result_spark.py
+```
