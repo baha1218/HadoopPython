@@ -109,8 +109,7 @@ nano text.txt
 ```
 Poussez le fichier `text.txt` dans votre cluster dans le repertoire /user/root
 ```bash
-hadoop fs -mkdir /user
-hadoop fs -mkdir /user/root
+fs -mkdir -p /user/root/
 hadoop fs -put text.txt
 ```
 Vérifiez sur le webui dans Utilities/Browse the file system.
@@ -146,10 +145,10 @@ Poussez les données dans votre cluster
 ```bash
 hadoop fs -put fr-esr-parcoursup.csv
 ```
-Créer un fichier [result_spark.py](https://github.com/baha1218/HadoopPython/blob/main/file/result_spark.py) et executez le.
+Créer un fichier [test_spark.py](https://github.com/baha1218/HadoopPython/blob/main/file/test_spark.py) et executez le.
 ```bash
-nano result_spark.py
-python3 result_spark.py
+nano test_spark.py
+python3 test_spark.py
 ```
 
 Affichez les données géneré dans le cluster
