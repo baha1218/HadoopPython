@@ -38,6 +38,8 @@ Nous allons maintenant installer pyspark sur nos 5 conteneurs.
 
 ### Datanode : 
 
+#### Configuration des datanodes sur la `VM1`
+
 Obtenez les ids de votre conteneur.
 
 ```bash
@@ -52,10 +54,27 @@ docker exec -ti <id> bash
 
 Installez pyspark.
 ```bash
-apt-get install python3
-apt-get install python3-pip
-pip3 install pyspark
+apt-get install python3 && apt-get install python3-pip && pip3 install pyspark
 /usr/local/spark/sbin/start-worker.sh spark://namenode:7077
+```
+#### Configuration du datanode sur la `VM2`
+
+Obtenez l'id de votre conteneur.
+
+```bash
+docker ps
+```
+
+Connectez vous au conteneur grace à l'id.
+
+```bash
+docker exec -ti <id> bash
+```
+
+Installez pyspark en renseignant la bonne <ip>, celle de la `VM1`.
+```bash
+apt-get install python3 && apt-get install python3-pip && pip3 install pyspark
+/usr/local/spark/sbin/start-worker.sh spark://<ip>:7077
 ```
 
 ### Namenode : 
@@ -74,9 +93,7 @@ docker exec -ti <id> bash
 
 Installez pyspark.
 ```bash
-apt-get install python3
-apt-get install python3-pip
-pip3 install pyspark
+apt-get install python3 && apt-get install python3-pip && pip3 install pyspark
 /usr/local/spark/sbin/start-master.sh
 ```
 Une fois l'installation terminé sur notre cluster, toutes le reste de la configuration se fera sur votre namenode.
