@@ -94,6 +94,6 @@ hadoop fs -mkdir /user/root
 hadoop fs -put text.txt
 ```
 Vérifiez sur le webui dans Utilities/Browse the file system
-![webuihadoop](hadoop.png)
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![webuihadoop](.gitignore/hadoop.png)
+
 
