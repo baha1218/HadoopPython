@@ -1,0 +1,10 @@
+IFSI,D.E secteur sanitaire,D.E Infirmier,1391246
+Ecole d'Ingénieur,Formations  des écoles d'ingénieurs,Formation d'ingénieur Bac + 5,626037
+PASS,Licence - Sciences - technologies - santé,Parcours d'Accès Spécifique Santé (PASS),512607
+Licence,Licence - Droit-économie-gestion,Droit,321999
+BTS,BTS - Services,Management Commercial Opérationnel,291727
+DUT,DUT - Service,Techniques de commercialisation,214800
+DUT,DUT - Service,Gestion des entreprises et des administrations,205799
+CPGE,Classe préparatoire scientifique,MPSI,198311
+BTS,BTS - Services,Négociation et digitalisation de la Relation Client,193432
+CPGE,Classe préparatoire scientifique,PCSI,183942
