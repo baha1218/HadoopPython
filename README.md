@@ -1,7 +1,10 @@
 
 # Déploiement de donnée sur Hadoop avec Python et Spark
 
-Nous allons, dans un premier temp, importer et pousser un fichier csv sur notre cluster et génerer un graphique.
+Dans cette documentation nous allons : 
+- Compter les données dans notre cluster
+- Importer et pousser un fichier csv sur notre cluster 
+- Génerer un graphique
 
 
 
