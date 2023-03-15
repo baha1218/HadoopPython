@@ -172,7 +172,7 @@ CPGE,Classe préparatoire scientifique,PCSI,183942
 ```
 ### Windows 
 
-Nous ne pouvons pas visualiser ces données sans interface graphique donc j'ai transféré mon fichier [result.txt](https://github.com/baha1218/HadoopPython/blob/main/file/result.txt) et [result_spark.py](https://github.com/baha1218/HadoopPython/blob/main/file/result_spark.py) sur mon windows avec python d'installer.
+Nous ne pouvons pas visualiser ces données sans interface graphique donc j'ai transféré mon fichier [result.txt](https://github.com/baha1218/HadoopPython/blob/main/file/result.txt) sur mon windows avec python d'installer. Un fichier [result_spark.py](https://github.com/baha1218/HadoopPython/blob/main/file/result_spark.py) doit aussi etre créer dans le meme repertoire que [result.txt](https://github.com/baha1218/HadoopPython/blob/main/file/result.txt).
 
 Rendez vous avec le `cmd` dans l'emplacement où se trouve vos fichiers.
 Vous devez avoir installer Python sur windows. N'oubliez pas d'installer matplotlib.
