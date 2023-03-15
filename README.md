@@ -27,9 +27,7 @@ Dans cette documentation nous allons :
 Dans un premier temps, nous allons installer pyspark sur `VM1` et `VM2`. Mes machine sont des Red Hat donc j'utilise dnf pour installer mes paquets.
 
 ```bash
-dnf install python3
-dnf install python3-pip
-pip3 install pyspark
+dnf install python3 && dnf install python3-pip && pip3 install pyspark
 ```
 
 Nous allons maintenant installer pyspark sur nos 5 conteneurs. 
