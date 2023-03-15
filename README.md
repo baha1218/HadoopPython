@@ -94,7 +94,7 @@ Installez pyspark.
 apt-get install python3 && apt-get install python3-pip && pip3 install pyspark
 /usr/local/spark/sbin/start-master.sh
 ```
-Une fois l'installation terminé sur notre cluster, toutes le reste de la configuration se fera sur votre namenode.
+Une fois l'installation terminé sur notre cluster, tout le reste de la configuration se fera sur votre namenode.
 
 Installez un editeur de texte.
 
