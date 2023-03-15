@@ -27,7 +27,7 @@ Dans cette documentation nous allons :
 Dans un premier temps, nous allons installer pyspark sur `VM1` et `VM2`. Mes machine sont des Red Hat donc j'utilise dnf pour installer mes paquets.
 
 ```bash
-dnf install python3 && dnf install python3-pip && pip3 install pyspark
+dnf install python3 -y && dnf install python3-pip -y && pip3 install pyspark
 ```
 
 Nous allons maintenant installer pyspark sur nos 5 conteneurs. 
@@ -36,8 +36,9 @@ Nous allons maintenant installer pyspark sur nos 5 conteneurs.
 
 ### Datanode : 
 
-#### Configuration des datanodes sur la `VM1`
+#### Configuration des 3 datanodes sur la `VM1`
 
+Il vous faudra executer les commandes ci-dessous sur les 3 datanodes
 Obtenez les ids de votre conteneur.
 
 ```bash
@@ -52,7 +53,7 @@ docker exec -ti <id> bash
 
 Installez pyspark.
 ```bash
-apt-get install python3 && apt-get install python3-pip && pip3 install pyspark
+apt-get install python3 -y && apt-get install python3-pip -y && pip3 install pyspark
 /usr/local/spark/sbin/start-worker.sh spark://namenode:7077
 ```
 #### Configuration du datanode sur la `VM2`
@@ -63,16 +64,16 @@ Obtenez l'id de votre conteneur.
 docker ps
 ```
 
-Connectez vous au conteneur grace à l'id.
+Connectez vous au conteneur.
 
 ```bash
-docker exec -ti <id> bash
+docker exec -ti datanode4 bash
 ```
 
 Installez pyspark en renseignant la bonne ip, celle de la `VM1`.
 ```bash
-apt-get install python3 && apt-get install python3-pip && pip3 install pyspark
-/usr/local/spark/sbin/start-worker.sh spark://<ip>:7077
+apt-get install python3 -y && apt-get install python3-pip -y && pip3 install pyspark
+/usr/local/spark/sbin/start-worker.sh spark://ip:7077
 ```
 
 ### Namenode : 
@@ -91,7 +92,7 @@ docker exec -ti <id> bash
 
 Installez pyspark.
 ```bash
-apt-get install python3 && apt-get install python3-pip && pip3 install pyspark
+apt-get install python3 -y && apt-get install python3-pip -y && pip3 install pyspark
 /usr/local/spark/sbin/start-master.sh
 ```
 Une fois l'installation terminé sur notre cluster, tout le reste de la configuration se fera sur votre namenode.
@@ -121,6 +122,26 @@ hadoop fs -mkdir /spark-logs
 Créer un fichier [text.py](https://github.com/baha1218/HadoopPython/blob/main/file/text.py)
 ```bash
 nano text.py
+```
+```bash
+from pyspark import SparkContext
+
+# Instantiation d'un SparkContext
+sc = SparkContext()
+
+# Lecture d'un fichier texte : le fichier est décomposé en lignes.
+lines = sc.textFile("text.txt")
+
+# Décomposition de chaque ligne en mots
+word_counts = lines.flatMap(lambda line: line.split(' ')) \
+                   .map(lambda word: (word, 1)) \
+                   .reduceByKey(lambda count1, count2: count1 + count2) \
+                   .collect()
+
+# Chaque paire (clé, valeur) est affichée
+for (word, count) in word_counts:
+    print(word, count)
+
 ```
 
 Vous pouvez maintenant executer le script qui va compter le nombre de mot dans le fichier que vous avez push dans le cluster.
