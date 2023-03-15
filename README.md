@@ -69,7 +69,7 @@ Connectez vous au conteneur grace à l'id.
 docker exec -ti <id> bash
 ```
 
-Installez pyspark en renseignant la bonne <ip>, celle de la `VM1`.
+Installez pyspark en renseignant la bonne ip, celle de la `VM1`.
 ```bash
 apt-get install python3 && apt-get install python3-pip && pip3 install pyspark
 /usr/local/spark/sbin/start-worker.sh spark://<ip>:7077
