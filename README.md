@@ -149,7 +149,7 @@ Vous pouvez maintenant executer le script qui va compter le nombre de mot dans l
 python3 text.py
 ```
 
-Nous allons maintenant telecharger des données et les push dans notre cluster. Nous generont par la suite des statistiques avec `pyspark`.
+Nous allons maintenant telecharger des données et les push dans notre cluster. Nous genererons par la suite des statistiques avec `pyspark`.
 
 Les données telechargées sont sous format csv. Il s'agit des voeux Parcoursup de l'année 2020;
 
