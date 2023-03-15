@@ -155,7 +155,7 @@ Affichez les données géneré dans le cluster
 ```bash
 hadoop fs -cat /user/root/result-parcoursup.csv/part-00000-9d5a5330-f923-4806-a095-dd8740e8a120-c000.csv
 ```
-Attention ! Votre fichier a surement un nom différent. Vous pouvez vérifier sur le webui ou avec un `fs -ls`
+Attention ! Votre fichier a surement un nom différent. Vous pouvez vérifier sur le webui ou avec un `hadoop fs -ls /user/root/result-parcoursup.csv/`
 
 Copiez l'output et créez un fichier [result.txt](https://github.com/baha1218/HadoopPython/blob/main/file/result.txt). N'oubliez pas de supprimer la premiere ligne !
 ```bash
