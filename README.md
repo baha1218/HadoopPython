@@ -107,7 +107,7 @@ nano text.txt
 ```
 Poussez le fichier `text.txt` dans votre cluster dans le repertoire /user/root
 ```bash
-fs -mkdir -p /user/root/
+hadoop fs -mkdir -p /user/root/
 hadoop fs -put text.txt
 ```
 Vérifiez sur le webui dans Utilities/Browse the file system.
